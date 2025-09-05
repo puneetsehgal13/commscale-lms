@@ -80,7 +80,7 @@ export default function Enrolled() {
                         variant="outlined"
                         color="info"
                         style={{ marginTop: 12 }}
-                        onClick={() => alert("Course viewer coming soon")}
+                        onClick={() => (window.location.href = `/course/${c.id}`)}
                       >
                         Open course
                       </MDButton>

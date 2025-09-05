@@ -52,6 +52,7 @@ import Icon from "@mui/material/Icon";
 import RequireAuth from "components/RequireAuth";
 import AuthPage from "pages/Auth";
 import Courses from "pages/Courses";
+import CourseDetail from "pages/CourseDetail";
 
 const routes = [
   // --- public (hidden) route for auth (not in sidenav) ---
@@ -60,6 +61,15 @@ const routes = [
     route: "/auth",
     component: <AuthPage />,
     // no 'type' or 'name' => it won't render in the sidenav
+  },
+  {
+    key: "course-detail",
+    route: "/course/:id",
+    component: (
+      <RequireAuth>
+        <CourseDetail />
+      </RequireAuth>
+    ),
   },
 
   // --- protected route visible in the sidenav ---
@@ -87,14 +97,7 @@ const routes = [
       </RequireAuth>
     ),
   },
-  {
-    type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
+
   {
     type: "collapse",
     name: "Tables",
