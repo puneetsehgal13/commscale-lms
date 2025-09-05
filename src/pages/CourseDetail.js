@@ -85,17 +85,15 @@ export default function CourseDetail() {
     const newVal = !progressMap[lessonId];
 
     // upsert row (PK is (user_id, lesson_id))
-    const { error } = await supabase
-      .from("lesson_progress")
-      .upsert(
-        {
-          user_id: userId,
-          lesson_id: lessonId,
-          completed: newVal,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: "user_id,lesson_id" }
-      );
+    const { error } = await supabase.from("lesson_progress").upsert(
+      {
+        user_id: userId,
+        lesson_id: lessonId,
+        completed: newVal,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,lesson_id" }
+    );
 
     if (error) {
       alert(error.message);
