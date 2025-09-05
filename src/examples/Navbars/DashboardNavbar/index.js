@@ -36,6 +36,8 @@ import MDInput from "components/MDInput";
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
+import { supabase } from "lib/supabase";
+
 // Custom styles for DashboardNavbar
 import {
   navbar,
@@ -176,6 +178,22 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon sx={iconsStyle}>notifications</Icon>
               </IconButton>
+              <button
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                  window.location.href = "/auth";
+                }}
+                style={{
+                  marginLeft: 12,
+                  padding: "8px 12px",
+                  borderRadius: 8,
+                  border: "1px solid #ddd",
+                  background: "#fff",
+                  cursor: "pointer",
+                }}
+              >
+                Sign out
+              </button>
               {renderMenu()}
             </MDBox>
           </MDBox>
